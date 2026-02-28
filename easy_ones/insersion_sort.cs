@@ -34,14 +34,18 @@ class InsertionSort
     Console.WriteLine("Original array:"); // Print the original array
     PrintArray(arr); // Call the method to print the array  
     InsertionSort sorter = new InsertionSort(); // Create an instance of the InsertionSort class
-    sorter.sort(arr); // Call the sort method to sort the array
+    sorter.sort_decr(arr); // Call the sort method to sort the array in decreasing order
     Console.WriteLine("Sorted array:"); // Print the sorted array
     PrintArray(arr); // Call the method to print the sorted array
 
+    InsertionSort sorter2 = new InsertionSort(); // Create another instance of the InsertionSort class
+    sorter2.sort_incr(arr); // Call the sort method to sort the array in increasing order
+    Console.WriteLine("Sorted array in increasing order:"); // Print the sorted array in increasing order
+    PrintArray(arr); // Call the method to print the sorted array in increasing order
   }
 
-  //method to perform insertion sort
-  void sort (int[] arr) 
+  //method to perform insertion sort in decreasing order
+  void sort_decr (int[] arr) 
   //why use void? --> because this method does not return any value, 
   // it modifies the input array in place.
   {
@@ -54,9 +58,9 @@ class InsertionSort
       //why j and i? --> i is the index of the current element being sorted, 
       // and j is used to traverse the sorted part of the array to find the correct position for the key.
 
-      // Move elements of arr[0..i-1], that are greater than key,
+      // Move elements of arr[0..i-1], that are less than key,
       // to one position ahead of their current position
-      while (j >= 0 && arr[j] > key) //if j is >= than 0 and j > i
+      while (j >= 0 && arr[j] < key) //if j is >= than 0 and j < i
       {
         //this console.writeline is for debugging, you can put a breakpoint on it to see how the algorithm works step by step
         Console.WriteLine($"Comparing {arr[j]} and {key}"); // Print the comparison being made
@@ -75,4 +79,26 @@ class InsertionSort
     }
     Console.WriteLine();
 }
+
+/*
+Exercise: Rewrite the INSERTION-SORT procedure to sort into monotonically decreasing in-
+stead of monotonically increasing order.
+*/
+void sort_incr (int[] arr) //same as sort_decr but change the comparison operator in the while loop to > instead of <
+  {
+    int n = arr.Length; 
+    for (int i = 1; i < n; i++)
+    {
+      int key = arr[i]; 
+      int j = i - 1; 
+
+      while (j >= 0 && arr[j] > key) // Change the comparison operator to > for increasing order
+      {
+        Console.WriteLine($"Comparing {arr[j]} and {key}"); 
+        arr[j + 1] = arr[j]; 
+        j = j - 1; 
+      }
+      arr[j + 1] = key;
+    }
+  }
 }
