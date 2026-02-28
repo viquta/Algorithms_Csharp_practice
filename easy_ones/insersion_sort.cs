@@ -10,10 +10,10 @@ Initially, the sorted part contains only the first element of the array,
 and the unsorted part contains the rest of the elements.
 
 pseudo code for insertion sort (see p. 19 in Thomas H et al)):
-I NSERTION-SORT .A;n/
+INSERTION-SORT(A, n)
   for i = 2 to n
     key = A[i]
-    Insert A[i] into the sorted sequence A[1..i-1]
+    //Insert A[i] into the sorted sequence A[1..i-1]
     j = i - 1
     while j >0 and A[j] > key
       A[j + 1] = A[j]
@@ -41,7 +41,9 @@ class InsertionSort
   }
 
   //method to perform insertion sort
-  void sort (int[] arr) //why use void? --> because this method does not return any value, it modifies the input array in place.
+  void sort (int[] arr) 
+  //why use void? --> because this method does not return any value, 
+  // it modifies the input array in place.
   {
     int n = arr.Length; // Get the length of the array
     //loop through the array starting from the second element
@@ -49,11 +51,14 @@ class InsertionSort
     {
       int key = arr[i]; // Store the current element as key
       int j = i - 1; // Initialize j to the index of the last sorted element
+      //why j and i? --> i is the index of the current element being sorted, 
+      // and j is used to traverse the sorted part of the array to find the correct position for the key.
 
       // Move elements of arr[0..i-1], that are greater than key,
       // to one position ahead of their current position
       while (j >= 0 && arr[j] > key) //if j is >= than 0 and j > i
       {
+        //this console.writeline is for debugging, you can put a breakpoint on it to see how the algorithm works step by step
         Console.WriteLine($"Comparing {arr[j]} and {key}"); // Print the comparison being made
         arr[j + 1] = arr[j]; // Shift the element at index j to the right (to index j + 1)
         j = j - 1; // Decrement j to check the next element in the sorted part of the array
