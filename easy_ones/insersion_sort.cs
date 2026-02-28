@@ -81,8 +81,8 @@ class InsertionSort
 }
 
 /*
-Exercise: Rewrite the INSERTION-SORT procedure to sort into monotonically decreasing in-
-stead of monotonically increasing order.
+Exercise: Rewrite the INSERTION-SORT procedure to sort into monotonically increasing in-
+stead of monotonically decreasing order.
 */
 void sort_incr (int[] arr) //same as sort_decr but change the comparison operator in the while loop to > instead of <
   {
